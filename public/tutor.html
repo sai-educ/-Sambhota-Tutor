@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AI Tutor for learning Tibetan script - powered by Google Gemini">
+    <title>AI Tutor - Sambhota Tutor</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>བོད</text></svg>">
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="index.html" class="logo">
+                <span class="logo-tibetan">སམ་བྷོ་ཊ</span>
+                Sambhota
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="learn.html">Learn</a></li>
+                <li><a href="tutor.html" class="active">AI Tutor</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+            <a href="settings.html" class="settings-icon" title="Settings">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="3"></circle>
+                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                </svg>
+            </a>
+        </div>
+    </nav>
+
+    <main>
+        <section class="section-header animate-in">
+            <h2>AI Tutor</h2>
+            <div class="tibetan-subtitle">རིག་འཕྲུལ་སློབ་དཔོན།</div>
+            <p style="margin-top: 1rem; color: var(--text-light); max-width: 600px; margin-left: auto; margin-right: auto;">
+                Ask questions about Tibetan script, pronunciation, vocabulary, and more.
+                Powered by Google Gemini AI (free).
+            </p>
+        </section>
+
+        <!-- API Key Setup Section -->
+        <section class="setup-section" id="setup-section">
+            <div class="setup-card">
+                <div class="setup-badge">Start Here</div>
+                <h3>Set Up Your Free AI Access</h3>
+                <p>
+                    To use the AI Tutor, you need a free API key from Google.
+                    This is a one-time setup that takes about 2 minutes.
+                </p>
+
+                <div class="api-key-status" id="api-key-status">
+                    <div class="status-indicator not-configured">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="12" y1="8" x2="12" y2="12"></line>
+                            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                        </svg>
+                        <span>API Key not configured</span>
+                    </div>
+                </div>
+
+                <div class="setup-steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <strong>Get your free API key</strong>
+                            <p>Follow our step-by-step guide to get a key from Google AI Studio.</p>
+                            <a href="instructions.html" class="btn btn-secondary" style="margin-top: 0.5rem;">
+                                View Instructions
+                            </a>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <strong>Enter your API key below</strong>
+                            <p>Your key stays in your browser only. We never see or store it.</p>
+                            <div class="api-input-group">
+                                <input type="password" id="api-key-input" placeholder="Paste your API key here (starts with AIza...)">
+                                <button onclick="saveApiKey()" class="btn btn-primary">Save Key</button>
+                            </div>
+                            <div class="api-key-feedback" id="api-key-feedback"></div>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <strong>Start chatting!</strong>
+                            <p>Once your key is saved, the chat will be enabled below.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Chat Section -->
+        <section class="chat-section" id="chat-section">
+            <div class="chat-container">
+                <div class="chat-header">
+                    <h3>Chat with AI Tutor</h3>
+                    <button onclick="clearChat()" class="clear-chat-btn" title="Clear conversation">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="3 6 5 6 21 6"></polyline>
+                            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                        </svg>
+                    </button>
+                </div>
+                <div class="chat-messages" id="chat-messages">
+                    <div class="message assistant">
+                        <div class="message-content">
+                            བཀྲ་ཤིས་བདེ་ལེགས། Hello! I'm your Tibetan script tutor. Ask me anything about:
+                            <ul style="margin: 0.5rem 0 0 1.5rem;">
+                                <li>The Tibetan alphabet and pronunciation</li>
+                                <li>How to write specific letters</li>
+                                <li>Vocabulary and common words</li>
+                                <li>The history of Tibetan script</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="chat-input-container" id="chat-input-container">
+                    <input type="text" id="chat-input" placeholder="Ask about Tibetan script..." onkeypress="handleKeyPress(event)" disabled>
+                    <button onclick="sendMessage()" id="send-btn" disabled>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="22" y1="2" x2="11" y2="13"></line>
+                            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                        </svg>
+                    </button>
+                </div>
+                <div class="chat-disabled-notice" id="chat-disabled-notice">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                    </svg>
+                    Enter your API key above to enable chat
+                </div>
+            </div>
+        </section>
+
+        <!-- Example Questions -->
+        <section class="examples-section">
+            <h3>Try asking:</h3>
+            <div class="example-questions">
+                <button class="example-btn" onclick="askExample('How do I pronounce the letter ཀ?')">
+                    How do I pronounce ཀ?
+                </button>
+                <button class="example-btn" onclick="askExample('What is the difference between ཀ and ཁ?')">
+                    Difference between ཀ and ཁ?
+                </button>
+                <button class="example-btn" onclick="askExample('How do I say hello in Tibetan?')">
+                    How to say hello?
+                </button>
+                <button class="example-btn" onclick="askExample('Who created the Tibetan script?')">
+                    Who created Tibetan script?
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>
+            Sambhota Tutor is an <strong>Open Education Resource</strong>
+            | <a href="https://github.com" target="_blank">View on GitHub</a>
+        </p>
+    </footer>
+
+    <script src="data.js"></script>
+    <script>
+        // Check API key on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            checkApiKey();
+        });
+
+        function checkApiKey() {
+            const apiKey = localStorage.getItem('gemini_api_key');
+            const statusEl = document.getElementById('api-key-status');
+            const chatInput = document.getElementById('chat-input');
+            const sendBtn = document.getElementById('send-btn');
+            const notice = document.getElementById('chat-disabled-notice');
+            const keyInput = document.getElementById('api-key-input');
+
+            if (apiKey && apiKey.length > 10) {
+                statusEl.innerHTML = `
+                    <div class="status-indicator configured">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                        </svg>
+                        <span>API Key configured</span>
+                        <button onclick="removeApiKey()" class="remove-key-btn">Remove</button>
+                    </div>
+                `;
+                chatInput.disabled = false;
+                sendBtn.disabled = false;
+                notice.style.display = 'none';
+                keyInput.value = '••••••••••••••••';
+                keyInput.disabled = true;
+            } else {
+                statusEl.innerHTML = `
+                    <div class="status-indicator not-configured">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="12" y1="8" x2="12" y2="12"></line>
+                            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                        </svg>
+                        <span>API Key not configured</span>
+                    </div>
+                `;
+                chatInput.disabled = true;
+                sendBtn.disabled = true;
+                notice.style.display = 'flex';
+                keyInput.disabled = false;
+                keyInput.value = '';
+            }
+        }
+
+        function saveApiKey() {
+            const keyInput = document.getElementById('api-key-input');
+            const feedback = document.getElementById('api-key-feedback');
+            const key = keyInput.value.trim();
+
+            if (!key) {
+                feedback.innerHTML = '<span class="error">Please enter an API key</span>';
+                return;
+            }
+
+            if (!key.startsWith('AIza')) {
+                feedback.innerHTML = '<span class="error">API key should start with "AIza..."</span>';
+                return;
+            }
+
+            localStorage.setItem('gemini_api_key', key);
+            feedback.innerHTML = '<span class="success">API key saved successfully!</span>';
+            checkApiKey();
+
+            setTimeout(() => {
+                feedback.innerHTML = '';
+            }, 3000);
+        }
+
+        function removeApiKey() {
+            if (confirm('Remove your API key?')) {
+                localStorage.removeItem('gemini_api_key');
+                checkApiKey();
+            }
+        }
+
+        async function sendMessage() {
+            const input = document.getElementById('chat-input');
+            const messages = document.getElementById('chat-messages');
+            const apiKey = localStorage.getItem('gemini_api_key');
+
+            if (!input || !messages) return;
+
+            const userMessage = input.value.trim();
+            if (!userMessage) return;
+
+            // Add user message
+            const userDiv = document.createElement('div');
+            userDiv.className = 'message user';
+            userDiv.innerHTML = `<div class="message-content">${escapeHtml(userMessage)}</div>`;
+            messages.appendChild(userDiv);
+
+            // Clear input
+            input.value = '';
+            messages.scrollTop = messages.scrollHeight;
+
+            // Show loading
+            const loadingDiv = document.createElement('div');
+            loadingDiv.className = 'message assistant';
+            loadingDiv.innerHTML = '<div class="message-content loading-dots">Thinking</div>';
+            messages.appendChild(loadingDiv);
+            messages.scrollTop = messages.scrollHeight;
+
+            try {
+                const response = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: userMessage, apiKey: apiKey })
+                });
+
+                const data = await response.json();
+                loadingDiv.remove();
+
+                const assistantDiv = document.createElement('div');
+                assistantDiv.className = 'message assistant';
+                assistantDiv.innerHTML = `<div class="message-content">${formatResponse(data.error || data.reply)}</div>`;
+                messages.appendChild(assistantDiv);
+            } catch (error) {
+                loadingDiv.remove();
+                const errorDiv = document.createElement('div');
+                errorDiv.className = 'message assistant';
+                errorDiv.innerHTML = '<div class="message-content error">Sorry, there was an error. Please check your API key and try again.</div>';
+                messages.appendChild(errorDiv);
+            }
+
+            messages.scrollTop = messages.scrollHeight;
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        function askExample(question) {
+            const input = document.getElementById('chat-input');
+            if (input && !input.disabled) {
+                input.value = question;
+                sendMessage();
+            } else {
+                alert('Please configure your API key first');
+            }
+        }
+
+        function clearChat() {
+            const messages = document.getElementById('chat-messages');
+            messages.innerHTML = `
+                <div class="message assistant">
+                    <div class="message-content">
+                        བཀྲ་ཤིས་བདེ་ལེགས། Hello! I'm your Tibetan script tutor. Ask me anything about:
+                        <ul style="margin: 0.5rem 0 0 1.5rem;">
+                            <li>The Tibetan alphabet and pronunciation</li>
+                            <li>How to write specific letters</li>
+                            <li>Vocabulary and common words</li>
+                            <li>The history of Tibetan script</li>
+                        </ul>
+                    </div>
+                </div>
+            `;
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        function formatResponse(text) {
+            // Basic formatting: convert newlines to <br> and handle lists
+            return text
+                .replace(/\n/g, '<br>')
+                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                .replace(/\*(.*?)\*/g, '<em>$1</em>');
+        }
+    </script>
+</body>
+</html>

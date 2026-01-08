@@ -18,8 +18,15 @@
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="learn.html" class="active">Learn</a></li>
+                <li><a href="tutor.html">AI Tutor</a></li>
                 <li><a href="about.html">About</a></li>
             </ul>
+            <a href="settings.html" class="settings-icon" title="Settings">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="3"></circle>
+                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                </svg>
+            </a>
         </div>
     </nav>
 
@@ -66,46 +73,13 @@
             </div>
         </div>
 
-        <!-- AI Tutor Section -->
-        <section class="ai-tutor">
-            <div class="section-header">
-                <h2>AI Tutor</h2>
-                <div class="tibetan-subtitle">རིག་འཕྲུལ་སློབ་དཔོན།</div>
-            </div>
-            <p style="text-align: center; margin-bottom: 1rem; color: var(--text-light);">
-                Have questions about Tibetan script? Ask the AI tutor for help!
+        <!-- AI Tutor Prompt -->
+        <section style="background: var(--bg-light); border-radius: 20px; padding: 2rem; margin-top: 2rem; box-shadow: 0 4px 20px var(--shadow-color); text-align: center;">
+            <h3 style="font-family: var(--heading-font); color: var(--primary-color); margin-bottom: 0.5rem;">Have Questions?</h3>
+            <p style="color: var(--text-light); margin-bottom: 1rem;">
+                Use our AI Tutor to ask questions about Tibetan script, pronunciation, and more.
             </p>
-
-            <div class="settings-toggle">
-                <button class="settings-btn" onclick="toggleSettings()">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="12" cy="12" r="3"></circle>
-                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
-                    </svg>
-                    API Settings
-                </button>
-            </div>
-
-            <div class="api-settings" id="api-settings">
-                <label for="api-key">Gemini API Key</label>
-                <input type="password" id="api-key" placeholder="Enter your Gemini API key">
-                <small>
-                    Get a free API key from <a href="https://makersuite.google.com/app/apikey" target="_blank">Google AI Studio</a>.
-                    Your key is stored locally in your browser and never sent to our server.
-                </small>
-            </div>
-
-            <div class="chat-container">
-                <div class="chat-messages" id="chat-messages">
-                    <div class="message assistant">
-                        བཀྲ་ཤིས་བདེ་ལེགས། Hello! I'm your Tibetan script tutor. Ask me anything about the Tibetan alphabet, pronunciation, or writing system!
-                    </div>
-                </div>
-                <div class="chat-input-container">
-                    <input type="text" id="chat-input" placeholder="Ask about Tibetan script..." onkeypress="handleKeyPress(event)">
-                    <button onclick="sendMessage()">Send</button>
-                </div>
-            </div>
+            <a href="tutor.html" class="btn btn-primary">Go to AI Tutor</a>
         </section>
     </main>
 

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Settings for Sambhota Tutor">
+    <title>Settings - Sambhota Tutor</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>བོད</text></svg>">
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="index.html" class="logo">
+                <span class="logo-tibetan">སམ་བྷོ་ཊ</span>
+                Sambhota
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="learn.html">Learn</a></li>
+                <li><a href="tutor.html">AI Tutor</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+            <a href="settings.html" class="settings-icon active" title="Settings">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="3"></circle>
+                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                </svg>
+            </a>
+        </div>
+    </nav>
+
+    <main>
+        <section class="section-header animate-in">
+            <h2>Settings</h2>
+            <div class="tibetan-subtitle">སྒྲིག་འགོད།</div>
+        </section>
+
+        <div class="settings-container">
+            <!-- API Key Section -->
+            <section class="settings-section">
+                <h3>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"></path>
+                    </svg>
+                    API Key
+                </h3>
+                <p class="settings-description">
+                    Your Gemini API key for the AI Tutor feature. This key is stored only in your browser.
+                </p>
+
+                <div class="settings-item">
+                    <label for="api-key">Gemini API Key</label>
+                    <div class="input-with-button">
+                        <input type="password" id="api-key" placeholder="Enter your API key">
+                        <button onclick="toggleKeyVisibility()" class="toggle-visibility" title="Show/hide key">
+                            <svg id="eye-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                <circle cx="12" cy="12" r="3"></circle>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="settings-actions">
+                        <button onclick="saveApiKey()" class="btn btn-primary btn-small">Save Key</button>
+                        <button onclick="removeApiKey()" class="btn btn-secondary btn-small">Remove Key</button>
+                    </div>
+                    <p class="settings-help">
+                        <a href="instructions.html">Need help getting an API key?</a>
+                    </p>
+                </div>
+
+                <div id="api-feedback" class="settings-feedback"></div>
+            </section>
+
+            <!-- About Section -->
+            <section class="settings-section">
+                <h3>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="12" y1="16" x2="12" y2="12"></line>
+                        <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                    </svg>
+                    About
+                </h3>
+                <div class="settings-item">
+                    <p><strong>Sambhota Tutor</strong> v1.0.0</p>
+                    <p>An Open Education Resource for learning Tibetan script.</p>
+                    <p style="margin-top: 1rem;">
+                        <a href="https://github.com" target="_blank">View on GitHub</a> |
+                        <a href="about.html">Learn more</a>
+                    </p>
+                </div>
+            </section>
+
+            <!-- Data Section -->
+            <section class="settings-section">
+                <h3>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="3 6 5 6 21 6"></polyline>
+                        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                    </svg>
+                    Data Management
+                </h3>
+                <p class="settings-description">
+                    Clear all locally stored data including your API key and chat history.
+                </p>
+                <div class="settings-item">
+                    <button onclick="clearAllData()" class="btn btn-danger btn-small">Clear All Data</button>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <p>
+            Sambhota Tutor is an <strong>Open Education Resource</strong>
+            | <a href="https://github.com" target="_blank">View on GitHub</a>
+        </p>
+    </footer>
+
+    <script>
+        // Load saved key on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedKey = localStorage.getItem('gemini_api_key');
+            if (savedKey) {
+                document.getElementById('api-key').value = savedKey;
+            }
+        });
+
+        function toggleKeyVisibility() {
+            const input = document.getElementById('api-key');
+            const icon = document.getElementById('eye-icon');
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.innerHTML = '<path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line>';
+            } else {
+                input.type = 'password';
+                icon.innerHTML = '<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle>';
+            }
+        }
+
+        function saveApiKey() {
+            const key = document.getElementById('api-key').value.trim();
+            const feedback = document.getElementById('api-feedback');
+
+            if (!key) {
+                feedback.innerHTML = '<span class="error">Please enter an API key</span>';
+                return;
+            }
+
+            if (!key.startsWith('AIza')) {
+                feedback.innerHTML = '<span class="error">API key should start with "AIza..."</span>';
+                return;
+            }
+
+            localStorage.setItem('gemini_api_key', key);
+            feedback.innerHTML = '<span class="success">API key saved successfully!</span>';
+            setTimeout(() => { feedback.innerHTML = ''; }, 3000);
+        }
+
+        function removeApiKey() {
+            if (confirm('Remove your API key?')) {
+                localStorage.removeItem('gemini_api_key');
+                document.getElementById('api-key').value = '';
+                document.getElementById('api-feedback').innerHTML = '<span class="success">API key removed</span>';
+                setTimeout(() => { document.getElementById('api-feedback').innerHTML = ''; }, 3000);
+            }
+        }
+
+        function clearAllData() {
+            if (confirm('This will remove your API key and all stored data. Continue?')) {
+                localStorage.clear();
+                document.getElementById('api-key').value = '';
+                document.getElementById('api-feedback').innerHTML = '<span class="success">All data cleared</span>';
+                setTimeout(() => { document.getElementById('api-feedback').innerHTML = ''; }, 3000);
+            }
+        }
+    </script>
+</body>
+</html>
