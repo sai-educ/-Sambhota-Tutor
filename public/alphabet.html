@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Learn individual Tibetan letters">
+    <title>Letter Detail - Sambhota Tutor</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>བོད</text></svg>">
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="index.html" class="logo">
+                <span class="logo-tibetan">སམ་བྷོ་ཊ</span>
+                Sambhota
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="learn.html" class="active">Learn</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <a href="learn.html" style="display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none; color: var(--primary-color); margin-bottom: 1rem;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M19 12H5M12 19l-7-7 7-7"/>
+            </svg>
+            Back to all letters
+        </a>
+
+        <!-- Progress Bar -->
+        <div class="progress-container">
+            <div class="progress-bar" id="progress-bar"></div>
+        </div>
+        <p class="progress-text" id="progress-text">Letter 1 of 30</p>
+
+        <section class="letter-detail animate-in" id="letter-detail">
+            <!-- Content populated by JavaScript -->
+            <div class="letter-display">
+                <span class="main-letter" id="main-letter">ཀ</span>
+                <div class="romanization" id="romanization">ka</div>
+            </div>
+
+            <div class="letter-info">
+                <div class="info-item">
+                    <h3>Pronunciation</h3>
+                    <p id="pronunciation">ka (like "car")</p>
+                </div>
+                <div class="info-item">
+                    <h3>Category</h3>
+                    <p id="category">Consonant</p>
+                </div>
+                <div class="info-item">
+                    <h3>Example Word</h3>
+                    <p class="tibetan-example" id="example">ཀ་བ (ka-ba) = pillar</p>
+                </div>
+            </div>
+
+            <!-- Vowel Combinations -->
+            <div class="info-item" style="margin-top: 1.5rem;">
+                <h3>With Vowels</h3>
+                <div style="display: flex; gap: 2rem; flex-wrap: wrap; margin-top: 1rem;" id="vowel-combinations">
+                    <!-- Populated by JavaScript -->
+                </div>
+            </div>
+
+            <nav class="letter-nav">
+                <a href="#" id="prev-letter" class="disabled">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M15 18l-6-6 6-6"/>
+                    </svg>
+                    <span>Previous</span>
+                    <span class="nav-letter" id="prev-letter-display"></span>
+                </a>
+                <a href="#" id="next-letter">
+                    <span class="nav-letter" id="next-letter-display"></span>
+                    <span>Next</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 18l6-6-6-6"/>
+                    </svg>
+                </a>
+            </nav>
+        </section>
+    </main>
+
+    <footer>
+        <p>
+            Sambhota Tutor is an <strong>Open Education Resource</strong>
+            | <a href="https://github.com" target="_blank">View on GitHub</a>
+        </p>
+    </footer>
+
+    <script src="data.js"></script>
+    <script>
+        // Get letter order from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const letterOrder = parseInt(urlParams.get('letter')) || 1;
+
+        // Find the letter
+        const letter = TIBETAN_ALPHABET.find(l => l.order === letterOrder);
+
+        if (letter) {
+            // Update display
+            document.getElementById('main-letter').textContent = letter.letter;
+            document.getElementById('romanization').textContent = letter.romanization;
+            document.getElementById('pronunciation').textContent = letter.pronunciation;
+            document.getElementById('category').textContent = letter.category.charAt(0).toUpperCase() + letter.category.slice(1);
+            document.getElementById('example').textContent = letter.example;
+            document.title = `${letter.letter} (${letter.romanization}) - Sambhota Tutor`;
+
+            // Update progress
+            const progress = (letterOrder / 30) * 100;
+            document.getElementById('progress-bar').style.width = `${progress}%`;
+            document.getElementById('progress-text').textContent = `Letter ${letterOrder} of 30`;
+
+            // Show vowel combinations
+            const vowelCombinations = document.getElementById('vowel-combinations');
+            TIBETAN_VOWELS.forEach(vowel => {
+                const combo = document.createElement('div');
+                combo.style.textAlign = 'center';
+                combo.innerHTML = `
+                    <span style="font-family: var(--tibetan-font); font-size: 2rem; color: var(--primary-color);">${letter.letter}${vowel.letter}</span>
+                    <div style="font-size: 0.9rem; color: var(--text-light);">${letter.romanization.slice(0, -1)}${vowel.romanization}</div>
+                `;
+                vowelCombinations.appendChild(combo);
+            });
+
+            // Navigation
+            const prevLetter = TIBETAN_ALPHABET.find(l => l.order === letterOrder - 1);
+            const nextLetter = TIBETAN_ALPHABET.find(l => l.order === letterOrder + 1);
+
+            const prevLink = document.getElementById('prev-letter');
+            const nextLink = document.getElementById('next-letter');
+            const prevDisplay = document.getElementById('prev-letter-display');
+            const nextDisplay = document.getElementById('next-letter-display');
+
+            if (prevLetter) {
+                prevLink.href = `alphabet.html?letter=${prevLetter.order}`;
+                prevLink.classList.remove('disabled');
+                prevDisplay.textContent = prevLetter.letter;
+            }
+
+            if (nextLetter) {
+                nextLink.href = `alphabet.html?letter=${nextLetter.order}`;
+                nextDisplay.textContent = nextLetter.letter;
+            } else {
+                nextLink.classList.add('disabled');
+            }
+        }
+    </script>
+</body>
+</html>

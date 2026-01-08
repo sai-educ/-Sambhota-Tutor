@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Learn the Tibetan alphabet, vowels, and numbers">
+    <title>Learn - Sambhota Tutor</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>བོད</text></svg>">
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="index.html" class="logo">
+                <span class="logo-tibetan">སམ་བྷོ་ཊ</span>
+                Sambhota
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="learn.html" class="active">Learn</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <section class="section-header animate-in">
+            <h2>Learn Tibetan Script</h2>
+            <div class="tibetan-subtitle">བོད་ཡིག་སློབ་སྦྱོང་།</div>
+        </section>
+
+        <!-- Tabs -->
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="alphabet">Alphabet (ཀ་ཁ)</button>
+            <button class="tab-btn" data-tab="vowels">Vowels (དབྱངས)</button>
+            <button class="tab-btn" data-tab="numbers">Numbers (གྲངས་ཀ)</button>
+        </div>
+
+        <!-- Alphabet Tab -->
+        <div id="alphabet" class="tab-content active">
+            <p style="text-align: center; margin-bottom: 1.5rem; color: var(--text-light);">
+                Click on any letter to learn more about it.
+            </p>
+            <div class="alphabet-grid" id="alphabet-grid">
+                <!-- Letters will be populated by JavaScript -->
+            </div>
+        </div>
+
+        <!-- Vowels Tab -->
+        <div id="vowels" class="tab-content">
+            <p style="text-align: center; margin-bottom: 1.5rem; color: var(--text-light);">
+                Tibetan has four vowel signs that modify the inherent 'a' sound of consonants.
+            </p>
+            <div class="vowels-grid" id="vowels-grid">
+                <!-- Vowels will be populated by JavaScript -->
+            </div>
+        </div>
+
+        <!-- Numbers Tab -->
+        <div id="numbers" class="tab-content">
+            <p style="text-align: center; margin-bottom: 1.5rem; color: var(--text-light);">
+                Learn Tibetan numerals and their pronunciation.
+            </p>
+            <div class="numbers-grid" id="numbers-grid">
+                <!-- Numbers will be populated by JavaScript -->
+            </div>
+        </div>
+
+        <!-- AI Tutor Section -->
+        <section class="ai-tutor">
+            <div class="section-header">
+                <h2>AI Tutor</h2>
+                <div class="tibetan-subtitle">རིག་འཕྲུལ་སློབ་དཔོན།</div>
+            </div>
+            <p style="text-align: center; margin-bottom: 1rem; color: var(--text-light);">
+                Have questions about Tibetan script? Ask the AI tutor for help!
+            </p>
+
+            <div class="settings-toggle">
+                <button class="settings-btn" onclick="toggleSettings()">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="3"></circle>
+                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                    </svg>
+                    API Settings
+                </button>
+            </div>
+
+            <div class="api-settings" id="api-settings">
+                <label for="api-key">Gemini API Key</label>
+                <input type="password" id="api-key" placeholder="Enter your Gemini API key">
+                <small>
+                    Get a free API key from <a href="https://makersuite.google.com/app/apikey" target="_blank">Google AI Studio</a>.
+                    Your key is stored locally in your browser and never sent to our server.
+                </small>
+            </div>
+
+            <div class="chat-container">
+                <div class="chat-messages" id="chat-messages">
+                    <div class="message assistant">
+                        བཀྲ་ཤིས་བདེ་ལེགས། Hello! I'm your Tibetan script tutor. Ask me anything about the Tibetan alphabet, pronunciation, or writing system!
+                    </div>
+                </div>
+                <div class="chat-input-container">
+                    <input type="text" id="chat-input" placeholder="Ask about Tibetan script..." onkeypress="handleKeyPress(event)">
+                    <button onclick="sendMessage()">Send</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>
+            Sambhota Tutor is an <strong>Open Education Resource</strong>
+            | <a href="https://github.com" target="_blank">View on GitHub</a>
+        </p>
+    </footer>
+
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
